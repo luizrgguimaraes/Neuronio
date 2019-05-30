@@ -1,0 +1,25 @@
+/* CSS Document */
+
+.btnPressed{
+    background-color: yellow;
+}
+
+button{
+    //width: 100px;
+}
+
+input{
+    width: 50px;
+}
+
+td{
+    border: 1px solid red;
+    color: white;
+    background-color: black;
+}
+
+th{
+    border: 1px solid red;
+    color: white;
+    background-color: rgb(125,0,0);
+}
