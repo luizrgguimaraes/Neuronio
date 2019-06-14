@@ -5,7 +5,7 @@ class Desenho{
         rect(0, 0, canvas.width, canvas.height);
     }
 
-    static desenharLinhas(pontos,cor,linhaStroke){
+    static desenharLinhas(pontos,cor,linhaStroke,texto){
         try{
                 
                 var x, y, realX, realY;
@@ -35,6 +35,7 @@ class Desenho{
                         realY = pontos.array[i].y; 
                         
                         vertex(x,y);
+                        
                     }
                     
                     
@@ -75,7 +76,8 @@ class Desenho{
         }
     }
     
-    static desenharEixos(extremos,cor,indice,unidadeY){
+    static desenharEixos2(extremos,cor,indice,unidadeY,unidadeX){
+        //funcao modificada para desenhar Eixos do Projeto SimulacaoPEA
         try{
             var color = 255;
             if(cor)color = cor;
@@ -83,15 +85,18 @@ class Desenho{
             strokeWeight(0);
             textSize(15);
             
+            var unidadeDeX = ' s ';
+            if(unidadeX)unidadeDeX  =unidadeX;
+            
             //inferior esquerdo - eixo X
             var posEixoXx = CANVASH*0.1+5;  
             var posEixoXy = CANVASW-CANVASW*0.1-(15*(indice))+30;
-            text( extremos.minX.toFixed(2)+' s ',posEixoXx,posEixoXy);
+            text( extremos.minX.toFixed(2)+unidadeDeX,posEixoXx,posEixoXy);
             
             //inferior direito - eixo X
             posEixoXx = CANVASH-CANVASH*0.1;  
             posEixoXy = CANVASW-CANVASW*0.1-(15*(indice))+30;
-            text( extremos.maxX.toFixed(2)+' s ',posEixoXx,posEixoXy);
+            text( extremos.maxX.toFixed(2)+unidadeDeX,posEixoXx,posEixoXy);
             
             
             //eixo Y inferior
@@ -240,11 +245,13 @@ class Desenho{
     
     static desenharTexto(arrayPontos,cor){
         try{        
+
             fill(cor);
             strokeWeight(0);
-            textSize(20);
+            textSize(15);
             for(var i = 0; i < arrayPontos.length; i++){
-                text(arrayPontos[i].y.toFixed(4),arrayPontos[i].relativeX,arrayPontos[i].relativeY+20);
+
+                text(arrayPontos[i].y.toFixed(2),arrayPontos[i].relativeX,arrayPontos[i].relativeY+20);
         	}
         }catch(err){
             alert('Desenho.desenharElipses(): '+err);
