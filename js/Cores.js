@@ -10,6 +10,7 @@ corModelo =
     ,[150,50,0]//amarelo
     ,[255,0,255] //magenta
     ,[30,144,255]//azul claro
+    ,[255,255,255] //branco
     ,[105,105,105] //cinza
     ,[139,69,19] //marrom
     ];

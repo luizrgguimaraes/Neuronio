@@ -243,15 +243,23 @@ class Desenho{
     }
 
     
-    static desenharTexto(arrayPontos,cor){
+    static desenharTexto(arrayPontos,cor,somenteUltimo,ajusteY){
         try{        
 
+
+            var ajuste_Y = 0;
+            if(ajusteY){
+                ajuste_Y = ajusteY;
+            }
+            
             fill(cor);
             strokeWeight(0);
             textSize(15);
             for(var i = 0; i < arrayPontos.length; i++){
-
-                text(arrayPontos[i].y.toFixed(2),arrayPontos[i].relativeX,arrayPontos[i].relativeY+20);
+                if(somenteUltimo){
+                    i = arrayPontos.length-1; 
+                }
+                text(arrayPontos[i].y.toFixed(2),arrayPontos[i].relativeX,arrayPontos[i].relativeY+20+ajusteY);
         	}
         }catch(err){
             alert('Desenho.desenharElipses(): '+err);

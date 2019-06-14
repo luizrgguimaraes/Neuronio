@@ -27,6 +27,9 @@ class Neuronio{
                 this.t[0] = 0;
         
                 
+                
+                
+                
 //                 this.matriz[N][0] = new Array();
 //                 this.matriz[N][0][0] = 0.3176;
 //                 this.matriz[M][0] = new Array();
@@ -225,7 +228,7 @@ class Neuronio{
             var head = new Array();
             head.push('segundo');
             for(var x in this.x){
-                head.push(this.x[x].toFixed(3)+' m');
+                head.push([this.x[x].toFixed(3)+' m',corModelo[x] ]);
             }
             Print.tabela(head,true);
                 
