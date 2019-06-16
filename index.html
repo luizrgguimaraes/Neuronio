@@ -35,20 +35,48 @@
         <button onclick="lerParametros();loop();">continuar</button>
 
         <table id="tableConfiguracoes">
-            <tr><th>Passo Tempo</th><th>Passo Espaço</th><th>Tempo Maximo</th></tr>
+            <tr><th>Passo Tempo</th><th>Passo Espaço</th><th>Tempo Max</th><th>Comprimento</th></tr>
             <tr>
                 <td>
-                    <input id=passoT value=0.1></input>
+                    <input id=passoT value=0.1 ></input>
                 </td>
                 <td>
-                    <input id=passoX value=0.1></input>
+                    <input id=passoX value=0.1 ></input>
                 </td>
                 <td>
                     <input id=tempoMaximo value=10></input>
                 </td>
-                
-            </tr>
+                <td>
+                    <input id=comprimento value=1></input>
+                </td>
             
+            </tr>
+            <tr><th>N</th><th>M</th><th>H</th></tr>    
+                <td> <input id=n value=0.3176></input> </td>
+                <td> <input id=m value=0.0529></input> </td>
+                <td> <input id=h value=0.5961></input> </td>
+            </tr>
+            <tr><th>gk</th><th>gna</th><th>gl</th></tr>    
+                <td> <input id=gk value=3.6></input> </td>
+                <td> <input id=gna value=12></input> </td>
+                <td> <input id=gl value=0.03></input> </td>
+            </tr>
+            <tr><th>Vk</th><th>Vna</th><th>Vl</th></tr>    
+                <td> <input id=Vk value=0.077></input> </td>
+                <td> <input id=Vna value=0.050></input> </td>
+                <td> <input id=Vl value=0.054402></input> </td>
+            </tr>
+            <tr><th>diametro a</th><th>Resistencia R</th><th>Capacitancia</th></tr>    
+                <td> <input id=a value=1></input> </td>
+                <td> <input id=R value=35.4></input> </td>
+                <td> <input id=Cm value=1></input> </td>
+            </tr>
+            <tr><th>V espaco 0</th><th>V espaco Final</th></tr>    
+                <td> <input id=Vi value=-65.002></input> </td>
+                <td> <input id=Vf value=0></input> </td>
+            </tr>
+
+
         </table>
         <input type="checkbox" id="graficoEspacoVoltagem" >Grafico Espaco Voltagem</input> <!--checked-->
         

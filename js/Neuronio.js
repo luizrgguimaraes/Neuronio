@@ -4,7 +4,7 @@ const M = 2;
 const H = 3;
 
 class Neuronio{
-    constructor(passoTempo, passoX,tempoMaximo){
+    constructor(passoTempo, passoX,tempoMaximo,comprimento,n,m,h,gk,gna,gl,Vk,Vna,Vl,a,R,Cm,Vi,Vf){
         try{
                 this.matriz = new Array();
                 this.matriz[V] = new Array();
@@ -14,9 +14,10 @@ class Neuronio{
 
                 this.pontos = new Array();
                 
-                this.comprimento = 1;//1 metro
+                this.comprimento = comprimento;//1 metro
                 this.hx = passoX;
                 this.xMaxDivisoes = this.comprimento/this.hx;
+                //alert(this.xMaxDivisoes);
                 this.x = new Array();
                 this.x[0] = 0;
                 
@@ -26,6 +27,17 @@ class Neuronio{
                 this.t = new Array();
                 this.t[0] = 0;
         
+                this.gk = gk;
+                this.gna = gna;
+                this.gl = gl;
+                this.Vk = Vk;
+                this.Vna = Vna;
+                this.Vl = Vl;
+                this.a = a;
+                this.R = R;
+                this.Cm = Cm;
+                this.Vi = Vi;
+                this.Vf = Vf;
                 
                 
                 
@@ -36,7 +48,7 @@ class Neuronio{
 //                 this.matriz[M][0][0] = 0.0529;
 //                 this.matriz[H][0] = new Array();
 //                 this.matriz[H][0][0] = 0.5961;
-        
+                //alert(N);
                 //criar Matriz  
                 for(var t=0; t <= this.tMaxDivisoes;t++){
                     
@@ -47,15 +59,15 @@ class Neuronio{
                             
                     for(var x=0; x <= this.xMaxDivisoes;x++){
                         this.matriz[V][t][x] = 0;
-                        this.matriz[N][t][x] = 0.3176;
-                        this.matriz[M][t][x] = 0.0529;
-                        this.matriz[H][t][x] = 0.5961;
+                        this.matriz[N][t][x] = n;
+                        this.matriz[M][t][x] = m;
+                        this.matriz[H][t][x] = h;
         
                         //fronteiras
                         if(x == 0){
-                            this.matriz[V][t][x] = -65.002;
+                            this.matriz[V][t][x] = this.Vi;
                         }else if(x == this.xMaxDivisoes){
-                            this.matriz[V][t][x] = 0;
+                            this.matriz[V][t][x] = this.Vf;
                         } 
                     }
                 }
@@ -86,9 +98,9 @@ class Neuronio{
     calcularLinha(tempo){
         try{
 
-            var A = 1;
-            var R = 35.4;
-            var CM = 1;
+            var A = this.a;
+            var R = this.R;
+            var CM = this.Cm;
            
             
             var nAnterior = this.matriz[N][tempo-1][0];
@@ -115,13 +127,13 @@ class Neuronio{
                 debug.push(primeiraParte);debugHead.push('primeiraParte');
                 
                 var Vm = this.matriz[V][tempo][0]*10**-3; 
-                var g1 = 3.6 * (nAnterior**4)*(Vm + 0.077);
+                var g1 = this.gk * (nAnterior**4)*(Vm + this.Vk);
                 debug.push(g1);debugHead.push('g1');
                 
-                var g2 = 12*(mAnterior**3)*hAnterior*(Vm-0.050);
+                var g2 = this.gna*(mAnterior**3)*hAnterior*(Vm-this.Vna);
                 debug.push(g2);debugHead.push('g2');
                 
-                var g3 = 0.03*(Vm+0.054402);
+                var g3 = this.gl*(Vm+this.Vl);
                 
                 debug.push(g3);debugHead.push('g3');
                 debug.push(Vm);debugHead.push('Vm');
@@ -212,9 +224,9 @@ class Neuronio{
         try{        
 
             var linha = new Array();
-            linha.push(this.t[t]);
+            linha.push(this.t[t].toFixed(4));
             for(var x in this.matriz[V][t]){
-                linha.push(this.matriz[V][t][x]);
+                linha.push(this.matriz[V][t][x].toFixed(4));
             }
             Print.tabela(linha);
 
@@ -226,12 +238,11 @@ class Neuronio{
         try{        
 
             var head = new Array();
-            head.push('segundo');
+            head.push('espaco(m) ></br>tempo(s) \\/');
             for(var x in this.x){
                 head.push([this.x[x].toFixed(3)+' m',corModelo[x] ]);
             }
             Print.tabela(head,true);
-                
 
         }catch(err){alert('Erro Neuronio.printHead(): '+err);}
     
